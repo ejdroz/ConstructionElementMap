@@ -123,7 +123,7 @@ var onPointerMove = function(evt) {
                             if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "inline label") {
                             popupField += '<th>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</th><td>';
                             } else {
-                                popupField += '<td colspan="2">';
+                                popupField += '<td colspan="3">';
                             }
                             if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "header label") {
                                 popupField += '<strong>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</strong><br />';
@@ -149,7 +149,7 @@ var onPointerMove = function(evt) {
                         if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "inline label") {
                             popupField += '<th>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</th><td>';
                         } else {
-                            popupField += '<td colspan="2">';
+                            popupField += '<td colspan="3">';
                         }
                         if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "header label") {
                             popupField += '<strong>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</strong><br />';
@@ -266,7 +266,7 @@ var onSingleClick = function(evt) {
                                 if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "inline label") {
                                 popupField += '<th>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</th><td>';
                                 } else {
-                                    popupField += '<td colspan="2">';
+                                    popupField += '<td colspan="3">';
                                 }
                                 if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "header label") {
                                     popupField += '<strong>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</strong><br />';
@@ -292,13 +292,18 @@ var onSingleClick = function(evt) {
                             if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "inline label") {
                                 popupField += '<th>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</th><td>';
                             } else {
-                                popupField += '<td colspan="2">';
+                                popupField += '<td colspan="3">';
                             }
                             if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "header label") {
                                 popupField += '<strong>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</strong><br />';
                             }
                             if (layer.get('fieldImages')[currentFeatureKeys[i]] != "ExternalResource") {
-                                popupField += (currentFeature.get(currentFeatureKeys[i]) != null ? autolinker.link(currentFeature.get(currentFeatureKeys[i]).toLocaleString()) + '</td>' : '');
+if (currentFeature.get(currentFeatureKeys[i]) == 0 || currentFeature.get(currentFeatureKeys[i]) == null) {
+        popupField = '';
+    } else {
+        popupField += (currentFeature.get(currentFeatureKeys[i]) != null ? 
+               Autolinker.link(String(currentFeature.get(currentFeatureKeys[i]))) + '</td>' : '');
+    } 
                             } else {
                                 popupField += (currentFeature.get(currentFeatureKeys[i]) != null ? '<img src="images/' + currentFeature.get(currentFeatureKeys[i]).replace(/[\\\/:]/g, '_').trim()  + '" /></td>' : '');
                             }
