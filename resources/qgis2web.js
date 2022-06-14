@@ -37,7 +37,7 @@ layerSwitcher.hidePanel = function() {};
 layerSwitcher.showPanel();
 
 
-map.getView().fit([737683.564097, 5862473.637014, 738447.069298, 5863302.900397], map.getSize());
+map.getView().fit([731579.921944, 5861598.535906, 745321.347492, 5870715.799452], map.getSize());
 
 var NO_POPUP = 0
 var ALL_FIELDS = 1
@@ -123,7 +123,7 @@ var onPointerMove = function(evt) {
                             if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "inline label") {
                             popupField += '<th>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</th><td>';
                             } else {
-                                popupField += '<td colspan="3">';
+                                popupField += '<td colspan="2">';
                             }
                             if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "header label") {
                                 popupField += '<strong>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</strong><br />';
@@ -149,7 +149,7 @@ var onPointerMove = function(evt) {
                         if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "inline label") {
                             popupField += '<th>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</th><td>';
                         } else {
-                            popupField += '<td colspan="3">';
+                            popupField += '<td colspan="2">';
                         }
                         if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "header label") {
                             popupField += '<strong>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</strong><br />';
@@ -266,7 +266,7 @@ var onSingleClick = function(evt) {
                                 if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "inline label") {
                                 popupField += '<th>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</th><td>';
                                 } else {
-                                    popupField += '<td colspan="3">';
+                                    popupField += '<td colspan="2">';
                                 }
                                 if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "header label") {
                                     popupField += '<strong>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</strong><br />';
@@ -292,18 +292,13 @@ var onSingleClick = function(evt) {
                             if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "inline label") {
                                 popupField += '<th>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</th><td>';
                             } else {
-                                popupField += '<td colspan="3">';
+                                popupField += '<td colspan="2">';
                             }
                             if (layer.get('fieldLabels')[currentFeatureKeys[i]] == "header label") {
                                 popupField += '<strong>' + layer.get('fieldAliases')[currentFeatureKeys[i]] + ':</strong><br />';
                             }
                             if (layer.get('fieldImages')[currentFeatureKeys[i]] != "ExternalResource") {
-if (currentFeature.get(currentFeatureKeys[i]) == 0 || currentFeature.get(currentFeatureKeys[i]) == null) {
-        popupField = '';
-    } else {
-        popupField += (currentFeature.get(currentFeatureKeys[i]) != null ? 
-               Autolinker.link(String(currentFeature.get(currentFeatureKeys[i]))) + '</td>' : '');
-    } 
+                                popupField += (currentFeature.get(currentFeatureKeys[i]) != null ? autolinker.link(currentFeature.get(currentFeatureKeys[i]).toLocaleString()) + '</td>' : '');
                             } else {
                                 popupField += (currentFeature.get(currentFeatureKeys[i]) != null ? '<img src="images/' + currentFeature.get(currentFeatureKeys[i]).replace(/[\\\/:]/g, '_').trim()  + '" /></td>' : '');
                             }
